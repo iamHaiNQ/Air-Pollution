@@ -1,21 +1,14 @@
+import 'package:airpollution/ui/pages/core/my_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: Colors.white.withOpacity(0),
+    ),
+  );
   runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello word!!!!'),
-        ),
-      ),
-      debugShowCheckedModeBanner: false,
-    );
-  }
 }
 

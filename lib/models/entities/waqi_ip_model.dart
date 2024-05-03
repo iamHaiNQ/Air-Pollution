@@ -262,6 +262,8 @@ class Forecast {
     daily = json['daily'] != null ? DailyEntity.fromJson(json['daily']) : null;
   }
 
+  String get time => "";
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (daily != null) {

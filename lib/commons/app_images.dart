@@ -1,3 +1,3 @@
 class AppImages{
-  static const imgSplash = "assets/images/img_splash.png";
+  static const imgBackground = "assets/images/img_background.png";
 }

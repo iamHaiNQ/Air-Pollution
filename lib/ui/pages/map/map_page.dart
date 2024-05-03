@@ -6,20 +6,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'map_cubit.dart';
 
-class MapArguments {
-  String param;
-
-  MapArguments({
-    required this.param,
-  });
-}
-
 class MapPage extends StatelessWidget {
-  final MapArguments arguments;
-
   const MapPage({
     Key? key,
-    required this.arguments,
   }) : super(key: key);
 
   @override

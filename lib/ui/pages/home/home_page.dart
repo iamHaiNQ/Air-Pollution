@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'home_cubit.dart';
-import 'forecast_widget.dart'; // Import ForecastWidget
+import 'forecast/forecast_widget.dart'; // Import ForecastWidget
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

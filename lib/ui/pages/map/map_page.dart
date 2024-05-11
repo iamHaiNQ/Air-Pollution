@@ -1,3 +1,4 @@
+import 'package:airpollution/ui/components/map_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -39,15 +40,17 @@ class _MapChildPageState extends State<MapChildPage> {
     _cubit = BlocProvider.of(context);
     _cubit.loadInitialData();
     kGooglePlex = const CameraPosition(
-      target: LatLng(0, 0),
-      zoom: 14.4746,
+      target: LatLng(
+        21.0278,
+        105.8342,
+      ),
+      zoom: 13,
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: SafeArea(
         child: _buildBodyWidget(),
       ),
@@ -55,19 +58,21 @@ class _MapChildPageState extends State<MapChildPage> {
   }
 
   Widget _buildBodyWidget() {
-    return GoogleMap(
-      mapType: MapType.normal,
-      zoomControlsEnabled: true,
-      compassEnabled: true,
-      myLocationButtonEnabled: false,
-      myLocationEnabled: false,
-      zoomGesturesEnabled: true,
-      tiltGesturesEnabled: true,
-      initialCameraPosition: kGooglePlex,
-      onMapCreated: (GoogleMapController controller) {},
-      // markers: <Marker>{maker},
-      gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{}
-        ..add(Factory<EagerGestureRecognizer>(() => EagerGestureRecognizer())),
+    return BlocBuilder<MapCubit, MapState>(
+      buildWhen: (prev, current) =>
+          prev.loadDataStatus != current.loadDataStatus,
+      builder: (context, state) {
+        return MapWidget(
+          initialCameraPosition: kGooglePlex,
+          locations: state.locations,
+          onTapMarker: (index){
+
+          },
+          onTapBackgroundMap: (){
+
+          },
+        );
+      },
     );
   }
 

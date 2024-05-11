@@ -1,6 +1,7 @@
-import 'package:airpollution/commons/app_images.dart';
+
 import 'package:airpollution/commons/app_text_styles.dart';
 import 'package:airpollution/ui/pages/main/main_page.dart';
+import 'package:airpollution/ui/pages/onboarding/onboarding_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,7 +42,7 @@ class _SplashChildPageState extends State<SplashChildPage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const MainPage(),
+          builder: (context) => const OnboardingScreen(),
         ),
       );
     });
@@ -49,20 +50,34 @@ class _SplashChildPageState extends State<SplashChildPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset(
-            AppImages.imgBackground,
-          ),
-          Center(
-            child: Text(
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin : Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: <Color> [
+            Color(0xFF49fcfa),
+            Color(0xFF45d6fd),
+          ],
+        ),
+      ),
+      child: Container(
+        color: Colors.transparent,
+
+        child: const Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
               "AirQI",
-              style: AppTextStyle.textPrimaryS56Bold,
+              style: TextStyle(
+                  fontStyle: FontStyle.italic,
+                  fontSize: 50,
+                  color: Color(0xff19185e)
+              ),
             ),
-          )
-        ],
+          ]
+
+        ),
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:airpollution/models/entities/health_level_info_entity.dart';
 import 'package:flutter/material.dart';
 
 enum AqiLevel {
@@ -9,38 +10,63 @@ enum AqiLevel {
   veryUnhealthy,
 }
 
-extension AppBarTypeExt on AqiLevel {
-  Color? get getColor {
+extension AqiLevelExtension on AqiLevel {
+  HealthLevelInfoEntity get getInfo {
     switch (this) {
       case AqiLevel.excellent:
-        return Colors.green;
+        return HealthLevelInfoEntity(
+          min: 0,
+          max: 50,
+          title: "Tốt",
+          description: "",
+          imgLink: "",
+          backgroundColor: Colors.green,
+        );
       case AqiLevel.good:
-        return Colors.yellow;
+        return HealthLevelInfoEntity(
+          min: 51,
+          max: 100,
+          title: "Trung bình",
+          description: "",
+          imgLink: "",
+          backgroundColor: Colors.yellow,
+        );
       case AqiLevel.fair:
-        return Colors.orange;
+        return HealthLevelInfoEntity(
+          min: 101,
+          max: 150,
+          title: "Không tốt cho nhóm nhạy cảm",
+          description: "",
+          imgLink: "",
+          backgroundColor: Colors.orange,
+        );
       case AqiLevel.poorForSensitiveGroups:
-        return Colors.red;
+        return HealthLevelInfoEntity(
+          min: 151,
+          max: 200,
+          title: "Có hại cho sức khoẻ",
+          description: "",
+          imgLink: "",
+          backgroundColor: Colors.red,
+        );
       case AqiLevel.unhealthy:
-        return Colors.deepPurpleAccent;
+        return HealthLevelInfoEntity(
+          min: 201,
+          max: 300,
+          title: "Rất có hại cho sức khoẻ",
+          description: "",
+          imgLink: "",
+          backgroundColor: Colors.deepPurpleAccent,
+        );
       case AqiLevel.veryUnhealthy:
-        return Colors.brown;
-    }
-  }
-
-  String get getTitle {
-    switch (this) {
-      case AqiLevel.excellent:
-        return "Tốt";
-      case AqiLevel.good:
-        return "Trung bình";
-      case AqiLevel.fair:
-        return "Không tốt cho nhóm nhạy cảm";
-      case AqiLevel.poorForSensitiveGroups:
-        return "Có hại cho sức khoẻ";
-      case AqiLevel.unhealthy:
-        return "Rất có hại cho sức khoẻ";
-      case AqiLevel.veryUnhealthy:
-        return "Nguy hại ";
+        return HealthLevelInfoEntity(
+          min: 301,
+          max: 500,
+          title: "Nguy hại",
+          description: "",
+          imgLink: "",
+          backgroundColor: Colors.brown,
+        );
     }
   }
 }

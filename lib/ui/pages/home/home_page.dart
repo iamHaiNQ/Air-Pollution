@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'home_cubit.dart';
-import 'forecast_widget.dart'; // Import ForecastWidget
+import 'widgets/forecast_widget.dart'; // Import ForecastWidget
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -38,10 +38,8 @@ class _HomeChildPageState extends State<HomeChildPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: Stack(
         children: [
-          // Background image from assets
           Positioned(
             child: ClipRRect(
               borderRadius: BorderRadius.only(
@@ -71,7 +69,6 @@ class _HomeChildPageState extends State<HomeChildPage> {
             ),
           ),
 
-          // Content
           SafeArea(
             child: Padding(
               padding: EdgeInsets.all(32),

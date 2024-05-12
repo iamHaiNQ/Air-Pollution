@@ -6,6 +6,7 @@ class AppTextStyle {
   static const black = TextStyle(color: Colors.black);
   static const textPrimary = TextStyle(color: AppColors.colorTextPrimary);
   static const textAccentBlue = TextStyle(color: AppColors.colorAccentBlue);
+
   static const textOnboarding = TextStyle(
     fontFamily: 'SF Pro Display',
     fontSize: 28,
@@ -56,6 +57,7 @@ class AppTextStyle {
   static final textPrimaryS56Bold = textPrimary.copyWith(
     fontSize: 56,
     fontWeight: FontWeight.bold,
+    fontStyle: FontStyle.italic,
   );
 
   //s10

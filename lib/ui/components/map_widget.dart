@@ -7,12 +7,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:airpollution/models/enums/aqi_level.dart';
 
 class MapWidget extends StatefulWidget {
   final CameraPosition initialCameraPosition;
   final List<LocationEntity>? locations;
   final Function? onTapMarker;
   final Function? onTapBackgroundMap;
+  final MapCreatedCallback? onMapCreated;
 
   const MapWidget({
     super.key,
@@ -20,6 +22,7 @@ class MapWidget extends StatefulWidget {
     this.locations,
     this.onTapMarker,
     this.onTapBackgroundMap,
+    this.onMapCreated,
   });
 
   @override
@@ -41,8 +44,11 @@ class _MapWidgetState extends State<MapWidget> {
       final String markerIdVal = '$i';
       final MarkerId markerId = MarkerId(markerIdVal);
 
+      final circleColor = locations[i].getAqiLevel.getInfo.backgroundColor;
+
       final icon = await _createMarkerIcon(
         airQuality: "${locations[i].airQuality ?? 0}",
+        backgroundColor: circleColor,
       );
       final Marker marker = Marker(
         markerId: markerId,
@@ -75,7 +81,9 @@ class _MapWidgetState extends State<MapWidget> {
       onTap: (location) {
         widget.onTapBackgroundMap?.call();
       },
-      onMapCreated: (GoogleMapController controller) {},
+      onMapCreated: (GoogleMapController controller) {
+        widget.onMapCreated?.call(controller);
+      },
       onCameraMove: (position) {},
       onCameraIdle: () {},
       markers: Set<Marker>.of(markers.values),
@@ -98,18 +106,21 @@ class _MapWidgetState extends State<MapWidget> {
 
   Future<Uint8List> _createMarkerIcon({
     required String airQuality,
+    Color backgroundColor = Colors.blue,
   }) async {
-    double radius = 50.0;
+    double radius = 40.0;
     double arrowWidth = 30.0;
     double arrowHeight = 15.0;
     final ui.PictureRecorder pictureRecorder = ui.PictureRecorder();
-    final Canvas canvas = Canvas(pictureRecorder);
-    final Paint backgroundPaint = Paint()..color = Colors.blue;
+    Canvas canvas = Canvas(pictureRecorder);
+    Paint backgroundPaint = Paint()..color = backgroundColor;
+
     final Paint borderPaint = Paint()
       ..color = Colors.white
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2.0;
-    final Paint arrowFillPaint = Paint()..color = Colors.blue;
+
+    final Paint arrowFillPaint = Paint()..color = backgroundColor;
     final Paint arrowBorderPaint = Paint()
       ..color = Colors.white
       ..style = PaintingStyle.stroke
@@ -123,7 +134,7 @@ class _MapWidgetState extends State<MapWidget> {
         text: airQuality,
         style: const TextStyle(
           color: Colors.white,
-          fontSize: 20.0,
+          fontSize: 24,
           fontWeight: FontWeight.bold,
         ),
       ),

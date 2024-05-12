@@ -24,6 +24,7 @@ dependencies:
   google_maps_flutter: ^2.5.3
   flutter_svg: ^2.0.7
   image: ^3.0.1
+  location:
 
 dev_dependencies:
   flutter_test:

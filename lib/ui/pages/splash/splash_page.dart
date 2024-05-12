@@ -1,5 +1,5 @@
-
 import 'package:airpollution/commons/app_text_styles.dart';
+import 'package:airpollution/ui/pages/home/home_page.dart';
 import 'package:airpollution/ui/pages/main/main_page.dart';
 import 'package:airpollution/ui/pages/onboarding/onboarding_page.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +42,7 @@ class _SplashChildPageState extends State<SplashChildPage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const OnboardingScreen(),
+          builder: (context) => const MainPage(),
         ),
       );
     });
@@ -50,33 +50,25 @@ class _SplashChildPageState extends State<SplashChildPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin : Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: <Color> [
-            Color(0xFF49fcfa),
-            Color(0xFF45d6fd),
-          ],
+    return Scaffold(
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: <Color>[
+              Color(0xFF49fcfa),
+              Color(0xFF45d6fd),
+            ],
+          ),
         ),
-      ),
-      child: Container(
-        color: Colors.transparent,
-
-        child: const Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "AirQI",
-              style: TextStyle(
-                  fontStyle: FontStyle.italic,
-                  fontSize: 50,
-                  color: Color(0xff19185e)
-              ),
-            ),
-          ]
-
+        child: Center(
+          child: Text(
+            "AirQI",
+            style: AppTextStyle.textPrimaryS56Bold,
+          ),
         ),
       ),
     );

@@ -15,7 +15,9 @@ class MapCubit extends Cubit<MapState> {
         loadDataStatus: LoadStatus.initial,
       ),
     );
+
     try {
+
       emit(
         state.copyWith(
           locations: listLocation,
@@ -23,12 +25,29 @@ class MapCubit extends Cubit<MapState> {
         ),
       );
     } catch (e, s) {
-      //Todo: should print exception here
       emit(
         state.copyWith(
           loadDataStatus: LoadStatus.failure,
         ),
       );
     }
+  }
+
+  onSelectLocation(int index) {
+    final location = state.locations![index];
+    emit(
+      state.copyWith(
+        locationSelected: location,
+        showDetailLocation: true,
+      ),
+    );
+  }
+
+  void hideInfoLocation() {
+    emit(
+      state.copyWith(
+        showDetailLocation: false,
+      ),
+    );
   }
 }

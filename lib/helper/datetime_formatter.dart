@@ -20,7 +20,9 @@ extension DateTimeExtension on DateTime {
     return formattedDate;
   }
 
-  String customOnlyDate({String format = 'dd/MM/yyyy'}) {
+  String customOnlyDate({
+    String format = 'dd/MM/yyyy',
+  }) {
     try {
       return toStringWith(format);
     } catch (_) {

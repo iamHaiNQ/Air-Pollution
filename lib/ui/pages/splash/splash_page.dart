@@ -1,6 +1,7 @@
-import 'package:airpollution/commons/app_images.dart';
 import 'package:airpollution/commons/app_text_styles.dart';
+import 'package:airpollution/ui/pages/home/home_page.dart';
 import 'package:airpollution/ui/pages/main/main_page.dart';
+import 'package:airpollution/ui/pages/onboarding/onboarding_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -50,19 +51,25 @@ class _SplashChildPageState extends State<SplashChildPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset(
-            AppImages.imgBackground,
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: <Color>[
+              Color(0xFF49fcfa),
+              Color(0xFF45d6fd),
+            ],
           ),
-          Center(
-            child: Text(
-              "AirQI",
-              style: AppTextStyle.textPrimaryS56Bold,
-            ),
-          )
-        ],
+        ),
+        child: Center(
+          child: Text(
+            "AirQI",
+            style: AppTextStyle.textPrimaryS56Bold,
+          ),
+        ),
       ),
     );
   }

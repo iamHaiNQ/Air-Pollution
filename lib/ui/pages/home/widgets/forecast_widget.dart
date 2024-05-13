@@ -25,7 +25,6 @@ class _ForecastWidgetState extends State<ForecastWidget> {
       {'time': '22:00', 'aqi': '60', 'temperature': '18°C'},
       {'time': '22:00', 'aqi': '60', 'temperature': '18°C'},
 
-
       // Add more entries as needed
     ].map((json) => Forecast.fromJson(json)).toList();
 
@@ -57,7 +56,7 @@ class _ForecastWidgetState extends State<ForecastWidget> {
           final forecast = forecasts[index];
           return Container(
             width: 50,
-            height:146,
+            height: 146,
 
             margin: EdgeInsets.all(7),
             decoration: BoxDecoration(

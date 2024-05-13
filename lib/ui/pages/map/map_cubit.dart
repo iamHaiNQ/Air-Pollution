@@ -1,3 +1,5 @@
+import 'package:airpollution/models/data/data_location.dart';
+import 'package:airpollution/models/entities/location_entity.dart';
 import 'package:airpollution/models/enums/load_status.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -8,13 +10,44 @@ class MapCubit extends Cubit<MapState> {
   MapCubit() : super(const MapState());
 
   Future<void> loadInitialData() async {
-    emit(state.copyWith(loadDataStatus: LoadStatus.initial));
+    emit(
+      state.copyWith(
+        loadDataStatus: LoadStatus.initial,
+      ),
+    );
+
     try {
-      //Todo: add API calls
-      emit(state.copyWith(loadDataStatus: LoadStatus.success));
+
+      emit(
+        state.copyWith(
+          locations: listLocation,
+          loadDataStatus: LoadStatus.success,
+        ),
+      );
     } catch (e, s) {
-      //Todo: should print exception here
-      emit(state.copyWith(loadDataStatus: LoadStatus.failure));
+      emit(
+        state.copyWith(
+          loadDataStatus: LoadStatus.failure,
+        ),
+      );
     }
+  }
+
+  onSelectLocation(int index) {
+    final location = state.locations![index];
+    emit(
+      state.copyWith(
+        locationSelected: location,
+        showDetailLocation: true,
+      ),
+    );
+  }
+
+  void hideInfoLocation() {
+    emit(
+      state.copyWith(
+        showDetailLocation: false,
+      ),
+    );
   }
 }

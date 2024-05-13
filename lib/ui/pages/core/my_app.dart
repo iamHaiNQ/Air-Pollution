@@ -1,5 +1,8 @@
 import 'package:airpollution/blocs/app_cubit.dart';
 import 'package:airpollution/configs/global_data.dart';
+import 'package:airpollution/network/api_client.dart';
+import 'package:airpollution/network/manager_api.dart';
+import 'package:airpollution/services/weather_repository.dart';
 import 'package:airpollution/ui/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,34 +16,41 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   late AppLifecycleState state;
-  // late ApiClient _apiClient;
+  late ApiClient _apiClient;
 
   @override
   void initState() {
-    // _apiClient = ManagerApi.instance.apiClient;
+    _apiClient = ManagerApi.instance.apiClient;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
+    return MultiRepositoryProvider(
       providers: [
-        BlocProvider(
-          create: (context) => context.read<AppCubit>(),
-        )
+        RepositoryProvider<IWeatherRepository>(create: (context) {
+          return WeatherRepository(_apiClient);
+        }),
       ],
-      child: MaterialApp(
-        title: 'AirQI App',
-        navigatorKey: GlobalData.instance.navigatorKey,
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          primarySwatch: Colors.blue,
-          primaryColor: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => context.read<AppCubit>(),
+          )
+        ],
+        child: MaterialApp(
+          title: 'AirQI App',
+          navigatorKey: GlobalData.instance.navigatorKey,
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            primarySwatch: Colors.blue,
+            primaryColor: Colors.blue,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          home: const SplashPage(),
         ),
-        home: const SplashPage(),
       ),
     );
   }

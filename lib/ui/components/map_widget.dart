@@ -10,7 +10,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:airpollution/models/enums/aqi_level.dart';
 
 class MapWidget extends StatefulWidget {
-  final CameraPosition initialCameraPosition;
+  final CameraPosition? initialCameraPosition;
   final List<LocationEntity>? locations;
   final Function? onTapMarker;
   final Function? onTapBackgroundMap;
@@ -18,7 +18,7 @@ class MapWidget extends StatefulWidget {
 
   const MapWidget({
     super.key,
-    required this.initialCameraPosition,
+    this.initialCameraPosition,
     this.locations,
     this.onTapMarker,
     this.onTapBackgroundMap,
@@ -77,7 +77,14 @@ class _MapWidgetState extends State<MapWidget> {
       zoomGesturesEnabled: true,
       zoomControlsEnabled: true,
       myLocationButtonEnabled: true,
-      initialCameraPosition: widget.initialCameraPosition,
+      initialCameraPosition: widget.initialCameraPosition ??
+          const CameraPosition(
+            target: LatLng(
+              21.0278,
+              105.8342,
+            ),
+            zoom: 11,
+          ),
       onTap: (location) {
         widget.onTapBackgroundMap?.call();
       },

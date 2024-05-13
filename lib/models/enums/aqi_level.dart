@@ -1,3 +1,4 @@
+import 'package:airpollution/commons/app_vectors.dart';
 import 'package:airpollution/models/entities/health_level_info_entity.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +16,7 @@ extension AqiLevelExtension on AqiLevel {
     switch (this) {
       case AqiLevel.excellent:
         return HealthLevelInfoEntity(
+          level: 1,
           min: 0,
           max: 50,
           title: "Tốt",
@@ -24,6 +26,7 @@ extension AqiLevelExtension on AqiLevel {
         );
       case AqiLevel.good:
         return HealthLevelInfoEntity(
+          level: 2,
           min: 51,
           max: 100,
           title: "Trung bình",
@@ -33,6 +36,7 @@ extension AqiLevelExtension on AqiLevel {
         );
       case AqiLevel.fair:
         return HealthLevelInfoEntity(
+          level: 3,
           min: 101,
           max: 150,
           title: "Không tốt cho nhóm nhạy cảm",
@@ -42,6 +46,7 @@ extension AqiLevelExtension on AqiLevel {
         );
       case AqiLevel.poorForSensitiveGroups:
         return HealthLevelInfoEntity(
+          level: 4,
           min: 151,
           max: 200,
           title: "Có hại cho sức khoẻ",
@@ -51,6 +56,7 @@ extension AqiLevelExtension on AqiLevel {
         );
       case AqiLevel.unhealthy:
         return HealthLevelInfoEntity(
+          level: 5,
           min: 201,
           max: 300,
           title: "Rất có hại cho sức khoẻ",
@@ -60,6 +66,7 @@ extension AqiLevelExtension on AqiLevel {
         );
       case AqiLevel.veryUnhealthy:
         return HealthLevelInfoEntity(
+          level: 5,
           min: 301,
           max: 500,
           title: "Nguy hại",
@@ -67,6 +74,25 @@ extension AqiLevelExtension on AqiLevel {
           imgLink: "",
           backgroundColor: Colors.brown,
         );
+    }
+  }
+
+  String get getIconStatus {
+    switch (this) {
+      case AqiLevel.excellent:
+        return AppVectors.iconAqiLevel1;
+      case AqiLevel.good:
+        return AppVectors.iconAqiLevel2;
+      case AqiLevel.fair:
+        return AppVectors.iconAqiLevel3;
+      case AqiLevel.poorForSensitiveGroups:
+        return AppVectors.iconAqiLevel4;
+      case AqiLevel.unhealthy:
+        return AppVectors.iconAqiLevel5;
+      case AqiLevel.veryUnhealthy:
+        return AppVectors.iconAqiLevel6;
+      default:
+        return AppVectors.iconAqiLevel1;
     }
   }
 }

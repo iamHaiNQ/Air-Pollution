@@ -35,7 +35,6 @@ class MapChildPage extends StatefulWidget {
 
 class _MapChildPageState extends State<MapChildPage> {
   late final MapCubit _cubit;
-  late CameraPosition kGooglePlex;
   LocationData? currentLocation;
   GoogleMapController? mapController;
 
@@ -44,13 +43,6 @@ class _MapChildPageState extends State<MapChildPage> {
     super.initState();
     _cubit = BlocProvider.of(context);
     _cubit.loadInitialData();
-    kGooglePlex = const CameraPosition(
-      target: LatLng(
-        21.0278,
-        105.8342,
-      ),
-      zoom: 11,
-    );
     _fetchCurrentLocation();
   }
 
@@ -73,7 +65,6 @@ class _MapChildPageState extends State<MapChildPage> {
         return Stack(
           children: [
             MapWidget(
-              initialCameraPosition: kGooglePlex,
               locations: state.locations,
               onMapCreated: (controller) {
                 mapController = controller;

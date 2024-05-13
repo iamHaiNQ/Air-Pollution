@@ -4,4 +4,7 @@ class AppConfig {
   static const String waqiKey = '4aacfc6fa246f1047d3237c81c2f1e93e8e544d0';
   static const String weatherUrl = 'https://api.openweathermap.org/data/3.0/onecall?';
   static const String weatherToken = '54a2850ba731a35944a5129657a55056';
+
+  static const String baseWeatherUrl = 'http://api.openweathermap.org';
+  static const apiKey = "54a2850ba731a35944a5129657a55056";
 }

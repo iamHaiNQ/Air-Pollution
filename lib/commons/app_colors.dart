@@ -7,7 +7,7 @@ class AppColors {
   static const vBlueColor = Color(0xFF2D84FF);
   static const Color colorTextPrimary = Color(0xFF19185E);
   static const Color colorAccentBlue = Color(0xFF245DD8);
-
-
+  static const Color colorGrayBackground = Color(0xFFFAFAFA);
+  static const Color emeraldGreenColor = Color(0xFF02DB5C);
 }
 

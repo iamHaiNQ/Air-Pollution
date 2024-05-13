@@ -25,11 +25,16 @@ dependencies:
   flutter_svg: ^2.0.7
   image: ^3.0.1
   location:
+  gauge_indicator: ^0.4.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  json_serializable:
+  auto_route_generator:
+  build_runner:
+  retrofit_generator:
 
 flutter:
   uses-material-design: true

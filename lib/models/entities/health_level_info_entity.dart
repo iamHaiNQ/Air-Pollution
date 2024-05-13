@@ -7,6 +7,7 @@ class HealthLevelInfoEntity {
   final String description;
   final String imgLink;
   final Color backgroundColor;
+  final int level;
 
   HealthLevelInfoEntity({
     required this.max,
@@ -15,5 +16,6 @@ class HealthLevelInfoEntity {
     required this.description,
     required this.imgLink,
     required this.backgroundColor,
+    required this.level,
   });
 }

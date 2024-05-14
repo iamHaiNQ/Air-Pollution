@@ -58,15 +58,22 @@ class CurrentEntity {
   @JsonKey()
   double? pop;
 
-  factory CurrentEntity.fromJson(Map<String, dynamic> json) => _$CurrentEntityFromJson(json);
+  factory CurrentEntity.fromJson(Map<String, dynamic> json) =>
+      _$CurrentEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$CurrentEntityToJson(this);
 
   String get dateTime {
-    return DateTime.fromMillisecondsSinceEpoch(dt! * 1000).toStringWith(DateTimeFormater.dateTimeHour);
+    return DateTime.fromMillisecondsSinceEpoch(dt! * 1000)
+        .toStringWith(DateTimeFormater.dateTime);
   }
 
   String get hour {
-    return DateTime.fromMillisecondsSinceEpoch(dt! * 1000).toStringWith(DateTimeFormater.dateTime);
+    return DateTime.fromMillisecondsSinceEpoch(dt! * 1000)
+        .toStringWith(DateTimeFormater.dateTime);
+  }
+
+  String get getTemp {
+    return (temp ?? 0.0).toStringAsFixed(0);
   }
 }

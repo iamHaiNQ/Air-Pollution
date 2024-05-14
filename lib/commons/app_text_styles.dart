@@ -20,11 +20,11 @@ class AppTextStyle {
       fontWeight: FontWeight.w400,
       letterSpacing: 0.5,
       color: Color(0xff4b5563));
+
   static const textButtonStart = TextStyle(
       fontFamily: 'SF Pro Display',
       fontSize: 16,
       fontWeight: FontWeight.w600,
-      height: 24,
       letterSpacing: 0.5,
       color: Colors.black);
 
@@ -47,6 +47,11 @@ class AppTextStyle {
     fontSize: 14,
   );
 
+  static final blackS14W500 = black.copyWith(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+  );
+
   static final blackS14Bold = blackS14.copyWith(
     fontWeight: FontWeight.bold,
   );
@@ -57,6 +62,11 @@ class AppTextStyle {
   static final blackS20W700 = blackS14.copyWith(
     fontWeight: FontWeight.w700,
     fontSize: 20,
+  );
+
+  static final blackS24W700 = blackS14.copyWith(
+    fontWeight: FontWeight.w700,
+    fontSize: 24,
   );
 
   //s16
@@ -83,6 +93,7 @@ class AppTextStyle {
   static final blackS10 = black.copyWith(
     fontSize: 10,
   );
+
   static final textSplash = black.copyWith(
     fontWeight: FontWeight.w200,
   );

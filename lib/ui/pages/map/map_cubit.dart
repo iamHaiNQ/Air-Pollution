@@ -12,12 +12,12 @@ class MapCubit extends Cubit<MapState> {
   Future<void> loadInitialData() async {
     emit(
       state.copyWith(
-        loadDataStatus: LoadStatus.initial,
+        loadDataStatus: LoadStatus.loading,
       ),
     );
 
     try {
-
+      //Call API
       emit(
         state.copyWith(
           locations: listLocation,

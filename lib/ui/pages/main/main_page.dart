@@ -51,72 +51,73 @@ class _MainChildPageState extends State<MainChildPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: PageView(
-          controller: controller,
-          children: const <Widget>[
-            HomePage(),
-            MapPage(),
-            DataBankPage(),
-            ProfilePage()
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              AppVectors.iconMenuInactive,
-            ),
-            activeIcon: SvgPicture.asset(
-              AppVectors.iconMenuActivated,
-            ),
-            label: "Menu",
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              AppVectors.iconMapInactive,
-            ),
-            activeIcon: SvgPicture.asset(
-              AppVectors.iconMapInactive,
-              color: Colors.blue,
-            ),
-            label: "Map",
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              AppVectors.iconImportInactive,
-            ),
-            activeIcon: SvgPicture.asset(
-              AppVectors.iconImportActivated,
-            ),
-            label: "Data bank",
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              AppVectors.iconMoreSquare,
-            ),
-            activeIcon: SvgPicture.asset(
-              AppVectors.iconMoreSquareActivated,
-            ),
-            label: "Profile",
-          ),
+      body: PageView(
+        controller: controller,
+        physics: const NeverScrollableScrollPhysics(),
+        children: const <Widget>[
+          HomePage(),
+          MapPage(),
+          DataBankPage(),
+          ProfilePage()
         ],
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _selectedIndex,
-        selectedItemColor: AppColors.colorAccentBlue,
-        selectedLabelStyle: AppTextStyle.textAccentBlueS10,
-        unselectedLabelStyle: AppTextStyle.blackS10.copyWith(
-          color: Colors.black.withOpacity(0.72),
+      ),
+      bottomNavigationBar: SafeArea(
+        child: BottomNavigationBar(
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                AppVectors.iconMenuInactive,
+              ),
+              activeIcon: SvgPicture.asset(
+                AppVectors.iconMenuActivated,
+              ),
+              label: "Menu",
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                AppVectors.iconMapInactive,
+              ),
+              activeIcon: SvgPicture.asset(
+                AppVectors.iconMapInactive,
+                color: Colors.blue,
+              ),
+              label: "Map",
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                AppVectors.iconImportInactive,
+              ),
+              activeIcon: SvgPicture.asset(
+                AppVectors.iconImportActivated,
+              ),
+              label: "Data bank",
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                AppVectors.iconMoreSquare,
+              ),
+              activeIcon: SvgPicture.asset(
+                AppVectors.iconMoreSquareActivated,
+              ),
+              label: "Profile",
+            ),
+          ],
+          type: BottomNavigationBarType.fixed,
+          currentIndex: _selectedIndex,
+          selectedItemColor: AppColors.colorAccentBlue,
+          selectedLabelStyle: AppTextStyle.textAccentBlueS10,
+          unselectedLabelStyle: AppTextStyle.blackS10.copyWith(
+            color: Colors.black.withOpacity(0.72),
+          ),
+          iconSize: 24,
+          onTap: (index) {
+            setState(() {
+              _selectedIndex = index;
+              controller.jumpToPage(index);
+            });
+          },
+          elevation: 5,
         ),
-        iconSize: 24,
-        onTap: (index) {
-          setState(() {
-            _selectedIndex = index;
-            controller.jumpToPage(index);
-          });
-        },
-        elevation: 5,
       ),
     );
   }

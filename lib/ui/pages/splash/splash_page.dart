@@ -42,7 +42,7 @@ class _SplashChildPageState extends State<SplashChildPage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const MainPage(),
+          builder: (context) => const OnboardingScreen(),
         ),
       );
     });

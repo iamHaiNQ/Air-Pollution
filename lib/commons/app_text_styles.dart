@@ -86,4 +86,21 @@ class AppTextStyle {
   static final textSplash = black.copyWith(
     fontWeight: FontWeight.w200,
   );
+
+  static const _baseTextStyle = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: Colors.black,
+  );
+
+  static final TextStyle body1Regular = _baseTextStyle.copyWith(
+    fontSize: 16,
+  );
+
+  static final TextStyle body3Regular = _baseTextStyle.copyWith(
+    fontSize: 13,
+  );
+
+  static final TextStyle caption = _baseTextStyle.copyWith(
+    fontSize: 12,
+  );
 }

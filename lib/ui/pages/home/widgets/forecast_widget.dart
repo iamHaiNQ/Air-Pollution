@@ -1,3 +1,4 @@
+import 'package:airpollution/commons/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class ForecastWidget extends StatefulWidget {
@@ -36,18 +37,30 @@ class _ForecastWidgetState extends State<ForecastWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 343, // Fill width
-      height: 240, // Hug height
-      padding: EdgeInsets.fromLTRB(16, 16, 8, 18), // Padding
-      margin: EdgeInsets.symmetric(vertical: 16), // Gap
+      width: double.infinity,
+      height: 248,
+      // Hug height
+      padding: EdgeInsets.fromLTRB(16, 16, 8, 18),
+      // Padding
+      margin: EdgeInsets.symmetric(vertical: 16),
+      // Gap
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(16),
-          topRight: Radius.circular(16),
-          bottomLeft: Radius.circular(16),
-          bottomRight: Radius.circular(16),
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.blackLevel1Color.withOpacity(0.08),
+            offset: const Offset(0, 4),
+            blurRadius: 30,
+          ),
+        ],
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Colors.white.withOpacity(0.9),
+            Colors.white,
+          ],
         ),
-        color: Colors.white.withOpacity(0.5), // Placeholder color
       ),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -57,10 +70,8 @@ class _ForecastWidgetState extends State<ForecastWidget> {
           return Container(
             width: 50,
             height: 146,
-
-            margin: EdgeInsets.all(7),
+            margin: EdgeInsets.all(8),
             decoration: BoxDecoration(
-
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
@@ -79,11 +90,7 @@ class _ForecastWidgetState extends State<ForecastWidget> {
                 SizedBox(
                   width: 32,
                   height: 8,
-                  child: Opacity(
-                    opacity: 0,
-                      child: Text("")
-
-                  ),
+                  child: Opacity(opacity: 0, child: Text("")),
                 ),
                 SizedBox(height: 10),
                 Text(
@@ -94,13 +101,11 @@ class _ForecastWidgetState extends State<ForecastWidget> {
                     fontWeight: FontWeight.w400,
                     height: 8 / 8,
                     color: Colors.grey.shade800,
-
                   ),
 
                   textAlign: TextAlign.center,
-
                 ),
-                SizedBox(height: 10),// Gap
+                SizedBox(height: 10), // Gap
                 Text(
                   "- aqi", // Text
                   style: TextStyle(

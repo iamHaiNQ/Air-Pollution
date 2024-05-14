@@ -21,4 +21,19 @@ class AppVectors {
   static const iconLow = "assets/vectors/icon_low.svg";
   static const iconTemperature = "assets/vectors/icon_temperature.svg";
   static const iconStatus = "assets/vectors/icon_status.svg";
+  static const iconInformation = "assets/vectors/icon_information.svg";
+  static const iconArrowRight = "assets/vectors/icon_arrow_right.svg";
+
+  static const iconAboutUs = "assets/vectors/icon_about_us.svg";
+  static const iconBirth = "assets/vectors/icon_birth.svg";
+  static const iconContact = "assets/vectors/icon_contact.svg";
+  static const iconFAQ = "assets/vectors/icon_faq.svg";
+  static const iconGmail = "assets/vectors/icon_gmail_.svg";
+  static const iconLocationGray = "assets/vectors/icon_location_gray.svg";
+  static const iconLogo = "assets/vectors/icon_logo.svg";
+  static const iconLogout = "assets/vectors/icon_logout.svg";
+  static const iconProfile = "assets/vectors/icon_profile.svg";
+  static const iconSavedLocation = "assets/vectors/icon_saved_location.svg";
+  static const iconSetting = "assets/vectors/icon_setting.svg";
+  static const iconCloseCircle = "assets/vectors/icon_close_circle.svg";
 }

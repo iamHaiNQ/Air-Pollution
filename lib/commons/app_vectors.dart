@@ -1,4 +1,7 @@
 class AppVectors {
+
+  static const iconAirQI = "assets/vectors/icon_AirQi.svg";
+
   static const iconImportActivated = "assets/vectors/icon_import_activated.svg";
   static const iconImportInactive = "assets/vectors/icon_import_inactive.svg";
   static const iconMapInactive = "assets/vectors/icon_map_inactive.svg";
@@ -14,6 +17,7 @@ class AppVectors {
   static const iconAqiLevel4 = "assets/vectors/icon_aq_status_level_4.svg";
   static const iconAqiLevel5 = "assets/vectors/icon_aq_status_level_5.svg";
   static const iconAqiLevel6 = "assets/vectors/icon_aq_status_level_6.svg";
+
 
   static const iconAqiStatus = "assets/vectors/icon_aqi_status.svg";
   static const iconArrowDownBlue = "assets/vectors/icon_arrow_down_blue.svg";
@@ -36,4 +40,7 @@ class AppVectors {
   static const iconSavedLocation = "assets/vectors/icon_saved_location.svg";
   static const iconSetting = "assets/vectors/icon_setting.svg";
   static const iconCloseCircle = "assets/vectors/icon_close_circle.svg";
+  static const iconArrowLeft = "assets/vectors/icon_arrow_left.svg";
+  static const iconEmail = "assets/vectors/icon_email.svg";
+
 }

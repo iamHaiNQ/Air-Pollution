@@ -1,9 +1,9 @@
-import 'package:airpollution/commons/app_text_styles.dart';
-import 'package:airpollution/ui/pages/home/home_page.dart';
-import 'package:airpollution/ui/pages/main/main_page.dart';
+
+import 'package:airpollution/commons/app_vectors.dart';
 import 'package:airpollution/ui/pages/onboarding/onboarding_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'splash_cubit.dart';
 
@@ -65,9 +65,10 @@ class _SplashChildPageState extends State<SplashChildPage> {
           ),
         ),
         child: Center(
-          child: Text(
-            "AirQI",
-            style: AppTextStyle.textPrimaryS56Bold,
+          child: SvgPicture.asset(
+            AppVectors.iconAirQI,
+            width: 30,
+            height: 70,
           ),
         ),
       ),

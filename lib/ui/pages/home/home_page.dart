@@ -2,6 +2,7 @@ import 'package:airpollution/commons/app_colors.dart';
 import 'package:airpollution/commons/app_text_styles.dart';
 import 'package:airpollution/commons/app_vectors.dart';
 import 'package:airpollution/ui/components/map_widget.dart';
+import 'package:airpollution/ui/pages/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -102,15 +103,24 @@ class _HomeChildPageState extends State<HomeChildPage> {
                             ),
                           ),
                         ),
-                        const Text(
-                          'User',
-                          style: TextStyle(
-                            fontFamily: 'SF Pro Display',
-                            fontSize: 28,
-                            fontWeight: FontWeight.w700,
-                            height: 38 / 28,
-                            letterSpacing: 0.4,
-                            color: Colors.black,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginScreen()),
+                            );
+                          },
+                          child: const Text(
+                            'User',
+                            style: TextStyle(
+                              fontFamily: 'SF Pro Display',
+                              fontSize: 28,
+                              fontWeight: FontWeight.w700,
+                              height: 38 / 28,
+                              letterSpacing: 0.4,
+                              color: Colors.black,
+                            ),
                           ),
                         ),
                         const SizedBox(height: 12),
@@ -152,7 +162,8 @@ class _HomeChildPageState extends State<HomeChildPage> {
                             borderRadius: BorderRadius.circular(16),
                             boxShadow: [
                               BoxShadow(
-                                color: AppColors.blackLevel1Color.withOpacity(0.08),
+                                color: AppColors.blackLevel1Color
+                                    .withOpacity(0.08),
                                 offset: const Offset(0, 4),
                                 blurRadius: 30,
                               ),

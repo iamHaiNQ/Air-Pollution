@@ -8,26 +8,42 @@ class AppTextStyle {
   static const textAccentBlue = TextStyle(color: AppColors.colorAccentBlue);
 
   static const textOnboarding = TextStyle(
-      fontFamily: 'SF Pro Display',
-      fontSize: 28,
-      fontWeight: FontWeight.w700,
-      height: 1.3,
-      letterSpacing: 0.5,
-      color: Color(0xff111827));
+    fontFamily: 'SF Pro Display',
+    fontSize: 28,
+    fontWeight: FontWeight.w700,
+    height: 1.3,
+    letterSpacing: 0.5,
+    color: Color(0xff111827),
+  );
   static const textOnboarding1 = TextStyle(
-      fontFamily: 'SF PRO Display',
-      fontSize: 14,
-      fontWeight: FontWeight.w400,
-      letterSpacing: 0.5,
-      color: Color(0xff4b5563));
+    fontFamily: 'SF PRO Display',
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.5,
+    color: Color(0xff4b5563),
+  );
 
   static const textButtonStart = TextStyle(
+    fontFamily: 'SF Pro Display',
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 0.5,
+    color: Colors.black,
+  );
+  static const textLoginHeadline = TextStyle(
+    fontFamily: 'SF Pro Display',
+    fontSize: 28,
+    fontWeight: FontWeight.w700,
+    letterSpacing: 0.5,
+    color: Color(0xff111827),
+  );
+  static const textLoginBody = TextStyle(
       fontFamily: 'SF Pro Display',
       fontSize: 16,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w400,
       letterSpacing: 0.5,
-      color: Colors.black);
-
+      color: Color(0xff646465)
+  );
   //s12
   static final blackS12 = black.copyWith(
     fontSize: 12,
@@ -82,7 +98,6 @@ class AppTextStyle {
   static final textPrimaryS56Bold = textPrimary.copyWith(
     fontSize: 56,
     fontWeight: FontWeight.bold,
-    fontStyle: FontStyle.italic,
   );
 
   //s10

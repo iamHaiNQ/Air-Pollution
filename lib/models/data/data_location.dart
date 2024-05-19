@@ -5,25 +5,25 @@ final List<LocationEntity> listLocation = [
     addressName: "Ba Đình",
     lat: 21.0338,
     long: 105.8142,
-    airQuality: 231,
+    airQuality: 150,
   ),
   LocationEntity(
     addressName: "Bắc Từ Liêm",
     lat: 21.0535,
     long: 105.7622,
-    airQuality: 75,
+    airQuality: 115,
   ),
   LocationEntity(
     addressName: "Cầu Giấy",
     lat: 21.0369,
     long: 105.7905,
-    airQuality: 200,
+    airQuality: 90,
   ),
   LocationEntity(
     addressName: "Đống Đa",
     lat: 21.0170,
     long: 105.8300,
-    airQuality: 70,
+    airQuality: 121
   ),
   LocationEntity(
     addressName: "Hà Đông",
@@ -58,19 +58,19 @@ final List<LocationEntity> listLocation = [
     addressName: "Nam Từ Liêm",
     lat: 21.0204,
     long: 105.7585,
-    airQuality: 77,
+    airQuality: 112,
   ),
   LocationEntity(
     addressName: "Tây Hồ",
     lat: 21.0631,
     long: 105.8223,
-    airQuality: 83,
+    airQuality: 92,
   ),
   LocationEntity(
     addressName: "Thanh Xuân",
     lat: 20.9939,
     long: 105.7991,
-    airQuality: 79,
+    airQuality: 59,
   ),
   LocationEntity(
     addressName: "Sơn Tây",
@@ -154,7 +154,7 @@ final List<LocationEntity> listLocation = [
     addressName: "Thạch Thất",
     lat: 21.0981,
     long: 105.5895,
-    airQuality: 77,
+    airQuality: 159,
   ),
   LocationEntity(
     addressName: "Thanh Oai",

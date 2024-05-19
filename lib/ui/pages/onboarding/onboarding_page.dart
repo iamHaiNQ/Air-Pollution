@@ -64,10 +64,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     context,
                     MaterialPageRoute(builder: (context) => MainPage()),
                   );
+
                 },
-                style: ButtonStyle(
-                    overlayColor:
-                        MaterialStateProperty.all<Color>(Colors.transparent)),
+                style: ButtonStyle(overlayColor: MaterialStateProperty.all<Color>(Colors.transparent)),
                 child: const Text(
                   'Skip',
                   style: TextStyle(
@@ -94,12 +93,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   _pageController.nextPage(
                       duration: const Duration(milliseconds: 300),
                       curve: Curves.ease);
-                  if (_currentPage == 2) {
+                  if(_currentPage == 2){
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => MainPage()),
                     );
                   }
+
                 },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
@@ -114,10 +114,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
                     gradient: const LinearGradient(
-                      colors: [
-                        Color(0xFF188EFF),
-                        Color(0xFF53FEEF),
-                      ],
+                      colors: [Color(0xFF188EFF),Color(0xFF53FEEF)],
                       begin: Alignment.centerRight,
                       end: Alignment.centerLeft,
                     ),
@@ -139,12 +136,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  Widget _buildPage({
-    required String imagePath,
-    required String title,
-    required String description,
-    required double screenWidth,
-  }) {
+  Widget _buildPage(
+      {required String imagePath,
+      required String title,
+      required String description,
+      required double screenWidth}) {
     return Column(
       children: [
         Padding(
@@ -163,9 +159,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         ),
         const SizedBox(height: 10.0),
         Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20.0,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Text(
             description,
             textAlign: TextAlign.center,
@@ -193,15 +187,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       decoration: BoxDecoration(
         gradient: isActive
             ? const LinearGradient(
-                colors: [
-                  Color(0xFF50F0E1),
-                  Color(0xFF329BFF),
-                ],
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-              )
-            : null,
-        // Màu của indicator khi không active sẽ là màu mặc định của container
+          colors: [Color(0xFF50F0E1), Color(0xFF329BFF)],
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+        )
+            : null, // Màu của indicator khi không active sẽ là màu mặc định của container
         color: !isActive ? Colors.grey : null,
         borderRadius: BorderRadius.circular(12),
       ),

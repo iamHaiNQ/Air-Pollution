@@ -67,7 +67,6 @@ class _SplashChildPageState extends State<SplashChildPage> {
         });
       }
 
-      // await FirebaseMessaging.instance.deleteToken();
       final deviceToken = await FirebaseMessaging.instance.getToken();
       GlobalData.instance.deviceToken = deviceToken;
       logger.d('Firebase Device TOKEN:\n$deviceToken');

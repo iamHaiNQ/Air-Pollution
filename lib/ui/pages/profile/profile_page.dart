@@ -2,7 +2,9 @@ import 'package:airpollution/commons/app_colors.dart';
 import 'package:airpollution/commons/app_images.dart';
 import 'package:airpollution/commons/app_text_styles.dart';
 import 'package:airpollution/commons/app_vectors.dart';
+import 'package:airpollution/configs/global_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -133,6 +135,17 @@ class _ProfileChildPageState extends State<ProfileChildPage> {
                     icon: AppVectors.iconLogout,
                     title: "Logout",
                   ),
+                  _buildItem(
+                      icon: AppVectors.iconLogout,
+                      title: "Copy Token",
+                      onTap: () async {
+                        final content = GlobalData.instance.deviceToken ?? '';
+                        await Clipboard.setData(
+                          ClipboardData(
+                            text: content,
+                          ),
+                        );
+                      }),
                   const SizedBox(height: 12),
                   Row(
                     children: <Widget>[

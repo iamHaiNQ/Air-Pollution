@@ -13,7 +13,7 @@ class _ApiClient implements ApiClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://www.hungs20.xyz/v1';
+    baseUrl ??= 'http://api.openweathermap.org';
   }
 
   final Dio _dio;

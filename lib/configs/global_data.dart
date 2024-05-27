@@ -7,4 +7,6 @@ class GlobalData {
 
   final navigatorKey = GlobalKey<NavigatorState>();
 
+  String? deviceToken;
+
 }

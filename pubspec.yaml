@@ -26,6 +26,11 @@ dependencies:
   image: ^3.0.1
   location:
   gauge_indicator: ^0.4.3
+  firebase_core:
+  firebase_messaging:
+  package_info:
+  permission_handler:
+  another_flushbar:
 
 dev_dependencies:
   flutter_test:

@@ -1,14 +1,16 @@
 import 'package:airpollution/commons/app_colors.dart';
 import 'package:airpollution/commons/app_text_styles.dart';
 import 'package:airpollution/commons/app_vectors.dart';
+import 'package:airpollution/models/entities/notification_message_entity.dart';
+import 'package:airpollution/ui/components/app_snack_bar.dart';
 import 'package:airpollution/ui/pages/data_bank/data_bank_page.dart';
 import 'package:airpollution/ui/pages/home/home_page.dart';
 import 'package:airpollution/ui/pages/map/map_page.dart';
 import 'package:airpollution/ui/pages/profile/profile_page.dart';
+import 'package:airpollution/utils/logger.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'main_cubit.dart';
@@ -46,6 +48,26 @@ class _MainChildPageState extends State<MainChildPage> {
     super.initState();
     _cubit = BlocProvider.of(context);
     _cubit.loadInitialData();
+    _setupFirebaseMessage();
+  }
+
+  void _setupFirebaseMessage() {
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+      if (message.notification != null) {
+        await buildNotificationSnackBar(message);
+      }
+      logger.d('RemoteMessage $message');
+    });
+  }
+
+  Future<void> buildNotificationSnackBar(RemoteMessage? noti) async {
+    final body = NotificationMessageEntity.fromJson(noti?.data ?? {});
+    return AppSnackBar.showInfo(
+      context,
+      title: noti?.notification?.title,
+      message: noti?.notification?.body ?? '',
+      onTap: () {},
+    );
   }
 
   @override

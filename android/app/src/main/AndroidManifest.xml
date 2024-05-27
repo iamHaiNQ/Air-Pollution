@@ -18,9 +18,12 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <!--Other-->
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+<!--    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />-->
+<!--    <uses-permission android:name="android.permission.WAKE_LOCK" />-->
+<!--    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />-->
+
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <queries>
         <!-- If your app opens https URLs -->
@@ -46,7 +49,7 @@
     </queries>
 
     <application
-        android:label="airpollution"
+        android:label="AQI"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true"
@@ -85,5 +88,11 @@
             android:value="2" />
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAUhnMNxq5EomjYu1Alf8F7kyA3X7oNvzA"/>
+<!--        <meta-data-->
+<!--            android:name="com.google.firebase.messaging.default_notification_icon"-->
+<!--            android:resource="@drawable/ic_launcher" />-->
+
+<!--        <meta-data android:name="com.google.firebase.messaging.default_notification_color"-->
+<!--            android:resource="@color/notification_color" />-->
     </application>
 </manifest>

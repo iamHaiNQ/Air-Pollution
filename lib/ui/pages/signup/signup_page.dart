@@ -1,60 +1,64 @@
 import 'package:airpollution/commons/app_text_styles.dart';
+import 'package:airpollution/ui/components/text_field_widget.dart';
+import 'package:airpollution/ui/pages/login/login_page.dart';
 import 'package:airpollution/ui/pages/main/main_page.dart';
+import 'package:airpollution/ui/pages/signup/signup_cubit.dart';
+import 'package:airpollution/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class SignUpPage extends StatelessWidget {
+  const SignUpPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) {
+        return SignUpCubit();
+      },
+      child: const SignUpChildPage(),
+    );
+  }
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
-  bool _obscureText = true;
+class SignUpChildPage extends StatefulWidget {
+  const SignUpChildPage({Key? key}) : super(key: key);
+
+  @override
+  State<SignUpChildPage> createState() => _SignUpChildPageState();
+}
+
+class _SignUpChildPageState extends State<SignUpChildPage> {
+  late final SignUpCubit _cubit;
+  late TextEditingController userController;
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
+  bool _obscureText = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _cubit = BlocProvider.of(context);
+    userController = TextEditingController();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+  }
 
   Widget _buildUserTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        SizedBox(height: 10.0),
-        TextField(
-          keyboardType: TextInputType.name,
-          style: const TextStyle(
-            color: Colors.black,
-            fontFamily: 'OpenSans',
-          ),
-          decoration: InputDecoration(
-            fillColor: Colors.white,
-            filled: true,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide.none,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                color: Colors.grey,
-                width: 1.0,
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                color: Colors.blueAccent,
-                width: 1.0,
-              ),
-            ),
-            contentPadding: EdgeInsets.only(top: 14.0),
-            prefixIcon: Icon(
-              Icons.person,
-              color: Colors.grey,
-            ),
-            hintText: 'Nhập tên của bạn',
-            hintStyle: TextStyle(
-              color: Colors.black54,
-              fontFamily: 'OpenSans',
-            ),
+        const SizedBox(height: 10),
+        TextFieldWidget(
+          controller: userController,
+          labelText: "Họ và tên",
+          maxLines: 5,
+          prefix: const Icon(
+            Icons.person,
+            color: Colors.grey,
           ),
         ),
       ],
@@ -65,44 +69,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        SizedBox(height: 10.0),
-        TextField(
-          keyboardType: TextInputType.emailAddress,
-          style: const TextStyle(
-            color: Colors.black,
-            fontFamily: 'OpenSans',
-          ),
-          decoration: InputDecoration(
-            fillColor: Colors.white,
-            filled: true,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide.none,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                color: Colors.grey,
-                width: 1.0,
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                color: Colors.blueAccent,
-                width: 1.0,
-              ),
-            ),
-            contentPadding: EdgeInsets.only(top: 14.0),
-            prefixIcon: Icon(
-              Icons.email,
-              color: Colors.grey,
-            ),
-            hintText: 'Nhập Email của bạn',
-            hintStyle: TextStyle(
-              color: Colors.black54,
-              fontFamily: 'OpenSans',
-            ),
+        const SizedBox(height: 10.0),
+        TextFieldWidget(
+          controller: emailController,
+          labelText: "Email",
+          maxLines: 5,
+          prefix: const Icon(
+            Icons.email,
+            color: Colors.grey,
           ),
         ),
       ],
@@ -113,62 +87,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        SizedBox(height: 10.0),
-        TextField(
-          obscureText: _obscureText,
-          style: const TextStyle(
-            color: Colors.black,
-            fontFamily: 'OpenSans',
+        const SizedBox(height: 10),
+        TextFieldWidget(
+          controller: passwordController,
+          labelText: "Mật khẩu",
+          maxLines: 5,
+          prefix: const Icon(
+            Icons.key,
+            color: Colors.grey,
           ),
-          decoration: InputDecoration(
-            fillColor: Colors.white,
-            filled: true,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide.none,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                color: Colors.grey,
-                width: 1.0,
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                color: Colors.blueAccent,
-                width: 1.0,
-              ),
-            ),
-            contentPadding: EdgeInsets.only(top: 14.0),
-            prefixIcon: Icon(
-              Icons.key,
-              color: Colors.grey,
-            ),
-            suffixIcon: IconButton(
-              onPressed: () {
-                setState(() {
-                  _obscureText = !_obscureText;
-                });
-              },
-              icon: Icon(
-                _obscureText ? Icons.visibility : Icons.visibility_off,
-                color: Colors.grey,
-              ),
-            ),
-            hintText: 'Nhập Password của bạn',
-            hintStyle: TextStyle(
-              color: Colors.black54,
-              fontFamily: 'OpenSans',
-            ),
+          suffix: Icon(
+            _obscureText ? Icons.visibility : Icons.visibility_off,
+            color: Colors.grey,
           ),
         ),
       ],
     );
   }
-
-
 
   Widget _buildSignupBtn() {
     return Container(
@@ -202,15 +137,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
             shadowColor: Colors.transparent,
           ),
-          onPressed: () => print('Nút đăng kí Được Nhấn'),
-          child: const Text(
+          onPressed: () async {
+            final result = await _cubit.onSignUp(
+              email: emailController.text,
+              password: passwordController.text,
+              userName: userController.text,
+            );
+
+            if (result != null) {
+              logger.d("signup success");
+              if (context.mounted) {
+                Navigator.of(context).pop();
+              }
+            }
+          },
+          child: Text(
             'Signup',
-            style: TextStyle(
+            style: AppTextStyle.blackS18Bold.copyWith(
               color: Colors.white,
-              letterSpacing: 1.5,
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'OpenSans',
             ),
           ),
         ),
@@ -221,7 +165,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget _buildLoginBtn() {
     return Center(
       child: GestureDetector(
-        onTap: () => print('Login Button Pressed'),
+        onTap: () {},
         child: RichText(
           text: const TextSpan(
             children: [
@@ -262,7 +206,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => MainPage()),
+                    MaterialPageRoute(
+                      builder: (context) => LoginPage(),
+                    ),
                   );
                 },
                 icon: const Icon(
@@ -283,10 +229,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
             onTap: () => FocusScope.of(context).unfocus(),
             child: Stack(
               children: <Widget>[
-                Container(
+                SizedBox(
                   height: double.infinity,
                   child: SingleChildScrollView(
-                    physics: AlwaysScrollableScrollPhysics(),
+                    physics: const AlwaysScrollableScrollPhysics(),
                     padding: const EdgeInsets.symmetric(
                       horizontal: 40.0,
                       vertical: 40.0,
@@ -305,13 +251,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           "Please signup to get your local AQI data.",
                           style: AppTextStyle.textLoginBody,
                         ),
-                        SizedBox(height: 30.0),
+                        const SizedBox(height: 8),
                         _buildUserTF(),
-                        SizedBox(height: 30),
+                        const SizedBox(height: 8),
                         _buildEmailTF(),
-                        SizedBox(
-                          height: 30.0,
-                        ),
+                        const SizedBox(height: 8),
                         _buildPasswordTF(),
                         _buildSignupBtn(),
                         _buildLoginBtn(),

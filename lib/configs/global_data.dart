@@ -1,3 +1,4 @@
+import 'package:airpollution/models/entities/account_entity.dart';
 import 'package:flutter/material.dart';
 
 class GlobalData {
@@ -8,5 +9,7 @@ class GlobalData {
   final navigatorKey = GlobalKey<NavigatorState>();
 
   String? deviceToken;
+
+  AccountEntity? accountEntity;
 
 }

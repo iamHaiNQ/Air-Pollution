@@ -91,6 +91,12 @@ class AppTextStyle {
     fontWeight: FontWeight.w500,
   );
 
+  //s18
+  static final blackS18Bold = black.copyWith(
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+  );
+
   static final textPrimaryS14 = textPrimary.copyWith(
     fontSize: 14,
   );

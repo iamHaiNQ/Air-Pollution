@@ -108,7 +108,8 @@ class _HomeChildPageState extends State<HomeChildPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => LoginScreen()),
+                                builder: (context) => const LoginPage(),
+                              ),
                             );
                           },
                           child: const Text(

@@ -2,6 +2,8 @@ import 'package:airpollution/blocs/app_cubit.dart';
 import 'package:airpollution/configs/global_data.dart';
 import 'package:airpollution/network/api_client.dart';
 import 'package:airpollution/network/manager_api.dart';
+import 'package:airpollution/services/auth_service.dart';
+import 'package:airpollution/services/fire_store_service.dart';
 import 'package:airpollution/services/weather_repository.dart';
 import 'package:airpollution/ui/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +32,12 @@ class _MyAppState extends State<MyApp> {
       providers: [
         RepositoryProvider<IWeatherRepository>(create: (context) {
           return WeatherRepository(_apiClient);
+        }),
+        RepositoryProvider<AuthService>(create: (context) {
+          return AuthService();
+        }),
+        RepositoryProvider<FireStoreService>(create: (context) {
+          return FireStoreService();
         }),
       ],
       child: MultiBlocProvider(

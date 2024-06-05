@@ -12,4 +12,5 @@ class GlobalData {
 
   AccountEntity? accountEntity;
 
+  Color colorAQI = Colors.blue;
 }

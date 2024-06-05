@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:airpollution/models/enums/load_status.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -16,5 +18,18 @@ class DataBankCubit extends Cubit<DataBankState> {
       //Todo: should print exception here
       emit(state.copyWith(loadDataStatus: LoadStatus.failure));
     }
+  }
+
+  void addImage(
+    File imageSelected,
+  ) {
+    final image = List<File>.of(state.images ?? []);
+    image.add(imageSelected);
+
+    emit(
+      state.copyWith(
+        images: image,
+      ),
+    );
   }
 }

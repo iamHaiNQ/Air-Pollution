@@ -6,6 +6,7 @@ import 'package:airpollution/ui/pages/main/main_page.dart';
 import 'package:airpollution/ui/pages/onboarding/onboarding_page.dart';
 import 'package:airpollution/utils/logger.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -46,11 +47,9 @@ class _SplashChildPageState extends State<SplashChildPage> {
     _cubit.loadInitialData();
     _initApp();
     Future.delayed(const Duration(seconds: 2)).then((value) {
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-          builder: (context) => const MainPage(),
-        ),
+        MaterialPageRoute(builder: (context) => const MainPage()),
       );
     });
   }
@@ -66,11 +65,41 @@ class _SplashChildPageState extends State<SplashChildPage> {
           }
         });
       }
+      requestPermissions();
 
       final deviceToken = await FirebaseMessaging.instance.getToken();
       GlobalData.instance.deviceToken = deviceToken;
       logger.d('Firebase Device TOKEN:\n$deviceToken');
     });
+  }
+
+  Future<void> requestPermissions() async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+    NotificationSettings settings = await messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      if (kDebugMode) {
+        print('User granted permission');
+      }
+    } else if (settings.authorizationStatus ==
+        AuthorizationStatus.provisional) {
+      if (kDebugMode) {
+        print('User granted provisional permission');
+      }
+    } else {
+      if (kDebugMode) {
+        print('User declined or has not accepted permission');
+      }
+    }
   }
 
   @override

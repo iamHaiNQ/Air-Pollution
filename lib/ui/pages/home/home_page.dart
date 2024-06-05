@@ -149,7 +149,7 @@ class _HomeChildPageState extends State<HomeChildPage> {
                                       21.0278,
                                       105.8342,
                                     ),
-                                    zoom: 10,
+                                    zoom: 10.5,
                                   ),
                                 ),
                               ),

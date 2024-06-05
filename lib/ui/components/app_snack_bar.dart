@@ -9,18 +9,21 @@ class AppSnackBar {
     String? message,
     String? icon,
     Function? onTap,
+    Color? backgroundColor,
+    int? timeDisplay,
   }) {
     return Flushbar(
       flushbarPosition: FlushbarPosition.TOP,
       title: title ?? '',
       message: message ?? '',
-      backgroundColor: Colors.blue,
+      backgroundColor: backgroundColor ?? Colors.blue,
       messageColor: Colors.white,
       margin: const EdgeInsets.symmetric(
         horizontal: 16,
+        vertical: 8,
       ),
       borderRadius: BorderRadius.circular(5),
-      duration: const Duration(seconds: 2),
+      duration: Duration(seconds: timeDisplay ?? 2),
       onTap: (dynamic) {
         onTap?.call();
       },

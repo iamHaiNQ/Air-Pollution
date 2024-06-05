@@ -7,15 +7,26 @@ class NotificationMessageEntity {
   NotificationMessageEntity({
     this.message,
     this.type,
-    this.body,
+    this.title,
+    this.aqiLevel,
+    this.aqiValue,
+    this.pm25,
   });
 
   @JsonKey()
-  String? body;
+  String? title;
   @JsonKey()
   String? message;
   @JsonKey()
   String? type;
+  @JsonKey(name: "aqi_level")
+  String? aqiLevel;
+
+  @JsonKey(name: "aqi_value")
+  String? aqiValue;
+
+  @JsonKey()
+  String? pm25;
 
   factory NotificationMessageEntity.fromJson(Map<String, dynamic> json) =>
       _$NotificationMessageEntityFromJson(json);

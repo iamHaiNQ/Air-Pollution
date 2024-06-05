@@ -1,7 +1,6 @@
 import 'package:airpollution/commons/app_text_styles.dart';
 import 'package:airpollution/models/entities/location_entity.dart';
 import 'package:airpollution/models/enums/aqi_level.dart';
-import 'package:airpollution/models/enums/load_status.dart';
 import 'package:airpollution/ui/components/map_widget.dart';
 import 'package:airpollution/ui/pages/detail_aqi/detail_aqi_page.dart';
 import 'package:flutter/material.dart';

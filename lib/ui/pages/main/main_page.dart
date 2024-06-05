@@ -1,6 +1,7 @@
 import 'package:airpollution/commons/app_colors.dart';
 import 'package:airpollution/commons/app_text_styles.dart';
 import 'package:airpollution/commons/app_vectors.dart';
+import 'package:airpollution/configs/global_data.dart';
 import 'package:airpollution/models/entities/notification_message_entity.dart';
 import 'package:airpollution/ui/components/app_snack_bar.dart';
 import 'package:airpollution/ui/pages/data_bank/data_bank_page.dart';
@@ -61,11 +62,27 @@ class _MainChildPageState extends State<MainChildPage> {
   }
 
   Future<void> buildNotificationSnackBar(RemoteMessage? noti) async {
-    final body = NotificationMessageEntity.fromJson(noti?.data ?? {});
+    final notification = NotificationMessageEntity.fromJson(noti?.data ?? {});
+
+    Color? backgroundColor;
+    final aqiLevel = int.parse(notification.aqiLevel ?? '0');
+
+    if (aqiLevel == 5) {
+      backgroundColor = Colors.red;
+    } else if (aqiLevel == 4) {
+      backgroundColor = Colors.orange;
+    } else {
+      backgroundColor = Colors.green;
+    }
+
+    GlobalData.instance.colorAQI = backgroundColor;
+
     return AppSnackBar.showInfo(
       context,
+      timeDisplay: 30,
       title: noti?.notification?.title,
       message: noti?.notification?.body ?? '',
+      backgroundColor: backgroundColor,
       onTap: () {},
     );
   }

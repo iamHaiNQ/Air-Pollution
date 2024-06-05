@@ -2,12 +2,14 @@ import 'dart:async';
 import 'dart:ui';
 import 'dart:ui' as ui;
 
+import 'package:airpollution/configs/global_data.dart';
 import 'package:airpollution/models/entities/location_entity.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:airpollution/models/enums/aqi_level.dart';
+import 'package:location/location.dart';
 
 class MapWidget extends StatefulWidget {
   final CameraPosition? initialCameraPosition;
@@ -31,9 +33,14 @@ class MapWidget extends StatefulWidget {
 
 class _MapWidgetState extends State<MapWidget> {
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
+  Map<PolygonId, Polygon> polygons = <PolygonId, Polygon>{};
+  Set<Circle> circles = {};
+  LocationData? currentLocation;
+  final Location location = Location();
 
   @override
   void initState() {
+    _getLocation();
     _init();
     super.initState();
   }
@@ -69,6 +76,28 @@ class _MapWidgetState extends State<MapWidget> {
     }
   }
 
+  Future<void> _getLocation() async {
+    final LocationData locationResult = await location.getLocation();
+    setState(
+      () {
+        currentLocation = locationResult;
+        circles.add(
+          Circle(
+            circleId: const CircleId("current_location"),
+            center: LatLng(
+              locationResult.latitude!,
+              locationResult.longitude!,
+            ),
+            radius: 3000,
+            strokeWidth: 2,
+            strokeColor: GlobalData.instance.colorAQI,
+            fillColor: GlobalData.instance.colorAQI.withOpacity(0.5),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return GoogleMap(
@@ -77,6 +106,7 @@ class _MapWidgetState extends State<MapWidget> {
       zoomGesturesEnabled: true,
       zoomControlsEnabled: true,
       myLocationButtonEnabled: true,
+      polygons: Set<Polygon>.of(polygons.values),
       initialCameraPosition: widget.initialCameraPosition ??
           const CameraPosition(
             target: LatLng(
@@ -88,6 +118,7 @@ class _MapWidgetState extends State<MapWidget> {
       onTap: (location) {
         widget.onTapBackgroundMap?.call();
       },
+      circles: circles,
       onMapCreated: (GoogleMapController controller) {
         widget.onMapCreated?.call(controller);
       },

@@ -3,6 +3,7 @@ import 'package:airpollution/commons/app_images.dart';
 import 'package:airpollution/commons/app_text_styles.dart';
 import 'package:airpollution/commons/app_vectors.dart';
 import 'package:airpollution/configs/global_data.dart';
+import 'package:airpollution/services/share_preferences_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -132,9 +133,11 @@ class _ProfileChildPageState extends State<ProfileChildPage> {
                     title: "Contact Us",
                   ),
                   _buildItem(
-                    icon: AppVectors.iconLogout,
-                    title: "Logout",
-                  ),
+                      icon: AppVectors.iconLogout,
+                      title: "Logout",
+                      onTap: () {
+                        SharedPreferencesStorage.removeUser();
+                      }),
                   _buildItem(
                       icon: AppVectors.iconLogout,
                       title: "Copy Token",

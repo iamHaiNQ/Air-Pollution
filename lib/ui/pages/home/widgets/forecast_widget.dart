@@ -38,12 +38,9 @@ class _ForecastWidgetState extends State<ForecastWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 248,
-      // Hug height
+      height: 190,
       padding: EdgeInsets.fromLTRB(16, 16, 8, 18),
-      // Padding
       margin: EdgeInsets.symmetric(vertical: 16),
-      // Gap
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         boxShadow: [

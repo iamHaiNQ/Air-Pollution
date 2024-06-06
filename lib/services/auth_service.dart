@@ -1,5 +1,6 @@
 import 'package:airpollution/configs/global_data.dart';
 import 'package:airpollution/models/entities/account_entity.dart';
+import 'package:airpollution/services/share_preferences_storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'fire_store_service.dart';
@@ -19,6 +20,7 @@ class AuthService {
         email: email,
         password: password,
       );
+
       await _populateCurrentUser(authResult.user);
       debugPrint("Da login with user: ${authResult.user?.email ?? ""}");
       return authResult.user != null;
@@ -72,6 +74,7 @@ class AuthService {
         _currentUser = userInfo;
       }
       GlobalData.instance.accountEntity = _currentUser;
+      SharedPreferencesStorage.setUser(_currentUser);
     }
   }
 

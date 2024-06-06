@@ -5,10 +5,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPreferencesStorage {
   static const _user = '_user';
 
-  static Future<String> getUser() async {
+  static Future<String?> getUser() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      return prefs.getString(_user) ?? "";
+      return prefs.getString(_user);
     } catch (e) {
       logger.e(e);
       return "";
@@ -19,7 +19,7 @@ class SharedPreferencesStorage {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString(
       _user,
-      accountEntity.toJson().toString(),
+      accountEntity.fullName ?? '',
     );
   }
 

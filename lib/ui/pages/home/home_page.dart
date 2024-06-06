@@ -1,6 +1,7 @@
 import 'package:airpollution/commons/app_colors.dart';
 import 'package:airpollution/commons/app_text_styles.dart';
 import 'package:airpollution/commons/app_vectors.dart';
+import 'package:airpollution/configs/global_data.dart';
 import 'package:airpollution/ui/components/map_widget.dart';
 import 'package:airpollution/ui/pages/login/login_page.dart';
 import 'package:flutter/material.dart';
@@ -82,6 +83,9 @@ class _HomeChildPageState extends State<HomeChildPage> {
               buildWhen: (prev, current) =>
                   prev.loadDataStatus != current.loadDataStatus,
               builder: (context, state) {
+                String userName =
+                    GlobalData.instance.accountEntity?.fullName ?? "Đăng nhập";
+
                 return SafeArea(
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.all(16),
@@ -89,50 +93,41 @@ class _HomeChildPageState extends State<HomeChildPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.only(bottom: 8),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
                           child: Text(
                             'Welcome 👋',
-                            style: TextStyle(
-                              fontFamily: 'SF Pro Display',
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              height: 24 / 16,
-                              letterSpacing: 0.5,
-                              color: Color(0xFF4B5563),
+                            style: AppTextStyle.blackS14W500.copyWith(
+                              color: AppColors.v2TextGrayColor,
                             ),
                           ),
                         ),
-                        GestureDetector(
+                        InkWell(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const LoginPage(),
-                              ),
-                            );
+                            if ((GlobalData.instance.accountEntity?.fullName ?? '').isEmpty) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const LoginPage(),
+                                ),
+                              );
+                            }
                           },
-                          child: const Text(
-                            'User',
-                            style: TextStyle(
-                              fontFamily: 'SF Pro Display',
-                              fontSize: 28,
-                              fontWeight: FontWeight.w700,
-                              height: 38 / 28,
-                              letterSpacing: 0.4,
-                              color: Colors.black,
-                            ),
+                          child: Text(
+                            userName,
+                            style: AppTextStyle.textOnboarding,
                           ),
                         ),
                         const SizedBox(height: 12),
-                        liveLocation(),
+                        // liveLocation(),
                         ForecastWidget(),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
+                            const SizedBox(height: 12),
                             Text(
                               "Show on Map",
-                              style: AppTextStyle.blackS12.copyWith(
+                              style: AppTextStyle.blackS14.copyWith(
                                 color: Colors.black.withOpacity(0.72),
                               ),
                             ),

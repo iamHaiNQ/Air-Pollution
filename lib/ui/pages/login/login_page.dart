@@ -54,7 +54,6 @@ class _LoginChildPageState extends State<LoginChildPage> {
         TextFieldWidget(
           controller: userController,
           labelText: "Email",
-          maxLines: 5,
           prefix: const Icon(
             Icons.email,
             color: Colors.grey,
@@ -72,7 +71,7 @@ class _LoginChildPageState extends State<LoginChildPage> {
         TextFieldWidget(
           controller: passwordController,
           labelText: "Mật khẩu",
-          maxLines: 5,
+          obscureText: true,
           prefix: const Icon(
             Icons.key,
             color: Colors.grey,
@@ -174,9 +173,6 @@ class _LoginChildPageState extends State<LoginChildPage> {
             );
 
             if (result != null) {
-              final user = AccountEntity();
-              SharedPreferencesStorage.setUser(user);
-
               if (!mounted) return;
               Navigator.pushAndRemoveUntil(
                 context,

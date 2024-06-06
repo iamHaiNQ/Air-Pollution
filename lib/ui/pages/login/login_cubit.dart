@@ -1,5 +1,6 @@
 import 'package:airpollution/models/enums/load_status.dart';
 import 'package:airpollution/services/auth_service.dart';
+import 'package:airpollution/services/share_preferences_storage.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -28,7 +29,6 @@ class LoginCubit extends Cubit<LoginState> {
         emit(state.copyWith(
           loadDataStatus: LoadStatus.success,
         ));
-
         return true;
       }
     } catch (e) {

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:airpollution/configs/global_data.dart';
 import 'package:airpollution/models/entities/account_entity.dart';
+import 'package:airpollution/models/entities/feedback_entity.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -8,6 +9,9 @@ import 'package:flutter/services.dart';
 class FireStoreService {
   final CollectionReference _usersCollectionReference =
       FirebaseFirestore.instance.collection('user');
+
+  final CollectionReference _userFeedbackCollectionReference =
+      FirebaseFirestore.instance.collection('user_feedback');
 
   Future createUser(AccountEntity user) async {
     try {
@@ -49,6 +53,19 @@ class FireStoreService {
       await _usersCollectionReference.doc(id).update(accountEntity.toJson());
     } catch (e) {
       debugPrint("$e");
+    }
+  }
+
+  Future createFeedback(FeedbackEntity feedbackInfo) async {
+    try {
+      final id = DateTime.now().millisecondsSinceEpoch;
+      await _userFeedbackCollectionReference.doc("$id").set(feedbackInfo.toJson());
+    } catch (e) {
+      if (e is PlatformException) {
+        return e.message;
+      }
+
+      return e.toString();
     }
   }
 }
